@@ -1,0 +1,27 @@
+{
+    "name": "foothing/laravel-repository-controller",
+    "description": "Resources controller with Eloquent Laravel Repository implementation.",
+    "authors": [
+        {
+            "name": "brazorf",
+            "email": "fabrizio.ranieri@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+		"illuminate/routing": "~5.0",
+		"foothing/laravel-repository": "0.*"
+    },
+	"require-dev": {
+		"mockery/mockery": "0.9.*",
+		"orchestra/testbench": "~3.0",
+		"phpunit/phpunit": "4.8.*",
+		"codeclimate/php-test-reporter": "dev-master"
+	},
+    "autoload": {
+        "psr-4": {
+            "Foothing\\RepositoryController\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
