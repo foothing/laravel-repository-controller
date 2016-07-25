@@ -25,7 +25,7 @@ your `routes.php`:
 Finally, configure your resources in the config file.
 
 ```
-php artisan vendor:publish --provider="Foothing\RepositoryController\RepositoryControllerServiceProvider"
+php artisan vendor:publish --provider="Foothing\RepositoryController\RepositoryControllerServiceProvider" --tag="config"
 ```
 
 This will add the `repository-controller.php` file in your `config` folder.
