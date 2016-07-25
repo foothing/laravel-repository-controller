@@ -50,6 +50,36 @@ class RepositoryWriterTest extends \PHPUnit_Framework_TestCase {
         $this->writer->bulkUpdate('Tests\Foothing\RepositoryController\Resources\Eloquent\MockModel', [new MockModel(), new MockModel()]);
     }
 
+    public function testLink() {
+        $entity = new MockModel();
+        $related = new MockModel();
+
+        $this->repository
+            ->shouldReceive('find')->once()->andReturn($entity)
+            ->shouldReceive('setModel')->once()
+            ->shouldReceive('find')->once()->andReturn($related)
+            ->shouldReceive('attach')->once()->with($entity, "children", $related);
+
+        $mockNamespace = 'Tests\Foothing\RepositoryController\Resources\Eloquent\MockModel';
+
+        $this->writer->link($mockNamespace, 1, "children", $mockNamespace, 2);
+    }
+
+    public function testUnlink() {
+        $entity = new MockModel();
+        $related = new MockModel();
+
+        $this->repository
+            ->shouldReceive('find')->once()->andReturn($entity)
+            ->shouldReceive('setModel')->once()
+            ->shouldReceive('find')->once()->andReturn($related)
+            ->shouldReceive('detach')->once()->with($entity, "children", $related);
+
+        $mockNamespace = 'Tests\Foothing\RepositoryController\Resources\Eloquent\MockModel';
+
+        $this->writer->unlink($mockNamespace, 1, "children", $mockNamespace, 2);
+    }
+
     public function tearDown() {
         \Mockery::close();
     }

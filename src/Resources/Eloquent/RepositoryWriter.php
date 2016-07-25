@@ -41,4 +41,28 @@ class RepositoryWriter implements WriterInterface {
         }
         return $result;
     }
+
+    public function link($resource, $id, $relation, $related, $relatedId) {
+        $model = new $resource();
+        $repository = new EloquentRepository($model);
+        $entity = $repository->find($id);
+
+        $related = new $related();
+        $repository->setModel($related);
+        $related = $repository->find($relatedId);
+
+        return $repository->attach($entity, $relation, $related);
+    }
+
+    public function unlink($resource, $id, $relation, $related, $relatedId) {
+        $model = new $resource();
+        $repository = new EloquentRepository($model);
+        $entity = $repository->find($id);
+
+        $related = new $related();
+        $repository->setModel($related);
+        $related = $repository->find($relatedId);
+
+        return $repository->detach($entity, $relation, $related);
+    }
 }

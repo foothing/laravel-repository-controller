@@ -5,6 +5,8 @@ use Foothing\RepositoryController\Resources\Exceptions\CannotMapResourceExceptio
 class Mapper {
 
 	public static function map($entity) {
+        // @TODO refactor to return instance?
+
 		$config = config("repository-controller.resources." . $entity);
 
         if (! $config) {

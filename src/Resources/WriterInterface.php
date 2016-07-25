@@ -43,4 +43,6 @@ interface WriterInterface {
      * @return mixed
      */
     public function delete($resource, $id);
+
+    public function link($resource, $id, $relation, $related, $relatedId);
 }
