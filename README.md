@@ -4,6 +4,7 @@ Easily open an HTTP api over your Laravel database.
 
 ## Setup
 Install with composer
+
 `composer require foothing/laravel-repository-controller`
 
 This package will define several routes in a REST-like format

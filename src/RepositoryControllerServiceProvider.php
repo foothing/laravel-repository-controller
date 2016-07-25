@@ -5,11 +5,11 @@ use Illuminate\Support\ServiceProvider;
 class RepositoryControllerServiceProvider extends ServiceProvider {
 
 	public function register() {
-		$this->app->bind('Foothing\RepositoryController\Resources\LoaderInterface', \Config::get('repository-controller.resourceLoader'));
-		$this->app->bind('Foothing\RepositoryController\Resources\WriterInterface', \Config::get('repository-controller.resourceWriter'));
+		$this->app->bind('Foothing\RepositoryController\Resources\LoaderInterface', config('resources.resourceLoader'));
+		$this->app->bind('Foothing\RepositoryController\Resources\WriterInterface', config('resources.resourceWriter'));
 	}
 
 	public function boot() {
-		$this->publishes( [ __DIR__ . "config/repository-controller.php" => config_path('repository-controller.php') ], 'config' );
+		$this->publishes( [ __DIR__ . "config/resources.php" => config_path('resources.php') ], 'config' );
 	}
 }
