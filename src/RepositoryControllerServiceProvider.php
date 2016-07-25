@@ -10,6 +10,6 @@ class RepositoryControllerServiceProvider extends ServiceProvider {
 	}
 
 	public function boot() {
-		$this->publishes( [ __DIR__ . "config/resources.php" => config_path('resources.php') ], 'config' );
+		$this->publishes( [ __DIR__ . "/config/resources.php" => config_path('resources.php') ], 'config' );
 	}
 }
