@@ -96,9 +96,21 @@ class ResourceController extends Controller {
         return $this->writer->bulkCreate($resource, $request->all());
     }
 
-	public function deleteIndex(Request $request, $resource, $id) {
+	public function deleteIndex($resource, $id) {
 		$resource = $this->mapper->map($resource);
 		return response()->json($this->writer->delete($resource, $id));
 	}
+
+    public function putLink($resource, $id, $relation, $related, $relatedId) {
+        $resource = $this->mapper->map($resource);
+        $related = $this->mapper->map($related);
+        return response()->json($this->writer->link($resource, $id, $relation, $related, $relatedId));
+    }
+
+    public function deleteLink($resource, $id, $relation, $related, $relatedId) {
+        $resource = $this->mapper->map($resource);
+        $related = $this->mapper->map($related);
+        return response()->json($this->writer->unlink($resource, $id, $relation, $related, $relatedId));
+    }
 
 }

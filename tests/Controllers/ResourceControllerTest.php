@@ -85,6 +85,32 @@ class ResourceControllerTest extends \Tests\Foothing\RepositoryController\BaseRo
         $this->call('DELETE', 'resources/foo/1');
     }
 
+    public function testPutLink() {
+        $this->mapper
+            ->shouldReceive('map')->with('foo')->once()->andReturn("namespace\foo")
+            ->shouldReceive('map')->with('bar')->once()->andReturn("namespace\bar");
+
+        $this->writer
+            ->shouldReceive('link')
+            ->once()
+            ->with("namespace\foo", 1, "children", "namespace\bar", 2);
+
+        $this->call('PUT', 'resources/foo/1/link/children/bar/2');
+    }
+
+    public function testDeleteLink() {
+        $this->mapper
+            ->shouldReceive('map')->with('foo')->once()->andReturn("namespace\foo")
+            ->shouldReceive('map')->with('bar')->once()->andReturn("namespace\bar");
+
+        $this->writer
+            ->shouldReceive('unlink')
+            ->once()
+            ->with("namespace\foo", 1, "children", "namespace\bar", 2);
+
+        $this->call('DELETE', 'resources/foo/1/link/children/bar/2');
+    }
+
     public function tearDown() {
         \Mockery::close();
     }
