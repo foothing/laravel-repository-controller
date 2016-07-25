@@ -7,7 +7,7 @@ class Mapper {
 	public static function map($entity) {
         // @TODO refactor to return instance?
 
-		$config = config("repository-controller.resources." . $entity);
+		$config = config("resources.resources." . $entity);
 
         if (! $config) {
             throw new CannotMapResourceException("$entity is not mapped.");
