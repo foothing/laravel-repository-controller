@@ -2,6 +2,10 @@
 
 use Foothing\RepositoryController\Resources\Eloquent\RepositoryWriter;
 
+/**
+ * @runTestsInSeparateProcesses
+ * @preserveGlobalState disabled
+ */
 class RepositoryWriterTest extends \PHPUnit_Framework_TestCase {
     protected $repository;
 

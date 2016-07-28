@@ -3,13 +3,16 @@
 use Foothing\Repository\Eloquent\EloquentCriteria;
 use Foothing\Repository\Eloquent\EloquentRepository;
 use Foothing\RepositoryController\Resources\LoaderInterface;
+use Foothing\RepositoryController\Resources\Mapper;
 use Foothing\Request\AbstractRemoteQuery;
 
 class RepositoryLoader implements LoaderInterface {
 	protected $criteria;
 
 	function loadEntity($resource, $id, $relations = array()) {
-		$repository = new EloquentRepository( new $resource() );
+        $instance = new $resource();
+
+		$repository = Mapper::mapRepository($resource, $instance);
 
         if ($relations) {
             $repository->with($relations);
@@ -22,7 +25,9 @@ class RepositoryLoader implements LoaderInterface {
 	}
 
 	function loadEntities($resource, $page, $ipp, $relations = array()) {
-		$repository = new EloquentRepository( new $resource() );
+        $instance = new $resource();
+
+        $repository = Mapper::mapRepository($resource, $instance);
 
         if ($this->criteria) {
             $repository->criteria($this->criteria);

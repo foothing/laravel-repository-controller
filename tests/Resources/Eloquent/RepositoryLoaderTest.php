@@ -2,7 +2,11 @@
 
 use Foothing\RepositoryController\Resources\Eloquent\RepositoryLoader;
 
-class RepositoryLoaderTest extends \PHPUnit_Framework_TestCase {
+/**
+ * @runTestsInSeparateProcesses
+ * @preserveGlobalState disabled
+ */
+class RepositoryLoaderTest extends \Orchestra\Testbench\TestCase {
 
     protected $repository;
 

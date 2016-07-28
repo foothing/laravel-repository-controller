@@ -1,10 +1,18 @@
 <?php namespace Tests\Foothing\RepositoryController\Controllers;
+use Foothing\RepositoryController\Controllers\RouteInstaller;
 
-class ResourceControllerTest extends \Tests\Foothing\RepositoryController\BaseRoutingTest {
+/**
+ * @runTestsInSeparateProcesses
+ * @preserveGlobalState disabled
+ */
+class ResourceControllerTest extends \Orchestra\Testbench\TestCase {
     protected $writer, $loader, $mapper;
 
     public function setUp() {
         parent::setUp();
+
+        RouteInstaller::install();
+
         $this->writer = \Mockery::mock('Foothing\RepositoryController\Resources\WriterInterface');
         $this->loader = \Mockery::mock('Foothing\RepositoryController\Resources\LoaderInterface');
         $this->mapper = \Mockery::mock('Foothing\RepositoryController\Resources\Mapper');
@@ -12,6 +20,10 @@ class ResourceControllerTest extends \Tests\Foothing\RepositoryController\BaseRo
         $this->app->instance('Foothing\RepositoryController\Resources\WriterInterface', $this->writer);
         $this->app->instance('Foothing\RepositoryController\Resources\LoaderInterface', $this->loader);
         $this->app->instance('Foothing\RepositoryController\Resources\Mapper', $this->mapper);
+    }
+
+    protected function getPackageProvider($app) {
+        return['Foothing\RepositoryController\RepositoryControllerServiceProvider'];
     }
 
     public function testGetIndex_returning_resources() {
