@@ -12,6 +12,7 @@ class RepositoryLoader implements LoaderInterface {
 	function loadEntity($resource, $id, $relations = array()) {
         $instance = new $resource();
 
+        // @FIXME! $resource is actually the resource namespace.
 		$repository = Mapper::mapRepository($resource, $instance);
 
         if ($relations) {
@@ -27,6 +28,7 @@ class RepositoryLoader implements LoaderInterface {
 	function loadEntities($resource, $page, $ipp, $relations = array()) {
         $instance = new $resource();
 
+        // @FIXME! $resource is actually the resource namespace.
         $repository = Mapper::mapRepository($resource, $instance);
 
         if ($this->criteria) {
