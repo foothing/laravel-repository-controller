@@ -3,12 +3,22 @@
 Easily open an HTTP api over your Laravel database.
 
 ## Setup
-Install with composer
+Install with composer:
 
 `composer require foothing/laravel-repository-controller`
 
 This package will define several routes in a REST-like format
 that will perform operations on your database.
+
+Add the service provider in `config/app.php`:
+
+```php
+	"providers" => [
+
+		Foothing\RepositoryController\RepositoryControllerServiceProvider::class,
+
+	],
+```
 
 In order to enable the routes, you'll need to declare them in
 your `routes.php`:
@@ -28,7 +38,7 @@ Finally, configure your resources in the config file.
 php artisan vendor:publish --provider="Foothing\RepositoryController\RepositoryControllerServiceProvider" --tag="config"
 ```
 
-This will add the `repository-controller.php` file in your `config` folder.
+This will add the `resources.php` file in your `config` folder.
 
 ```php
 'resources' => array(
