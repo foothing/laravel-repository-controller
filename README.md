@@ -32,6 +32,9 @@ your `routes.php`:
 > Be careful and place the `RouteInstaller::install()` method at the very
 > end of your `routes.php` in order to avoid conflicts.
 
+> IMPORTANT: you will need to change the default Controllers namespace in `RouteServiceProvider` like so:
+> `protected $namespace = '';`
+
 Finally, configure your resources in the config file.
 
 ```
